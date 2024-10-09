@@ -8,9 +8,9 @@ st.title("Simple Calculator")
 if 'result' not in st.session_state:
     st.session_state.result = ""
 
-# 결과창 만들기
+# 결과창 만들기 (key 값에 고유한 값 부여)
 def display_result():
-    st.text_input("Expression", st.session_state.result, key='display_result', disabled=True)
+    st.text_input("Expression", st.session_state.result, key=f'display_result_{len(st.session_state.result)}', disabled=True)
 
 # 숫자 및 연산자 버튼 클릭 처리
 def num_click(num):
@@ -100,16 +100,13 @@ with cols[3]:
     if st.button('+', key="plus"):
         operation_click('+')
 
-# 지우기 버튼 (백스페이스)
-with cols[0]:
-  if st.button('←', key="backspace"):
-      delete_last()
 # 계산 버튼
-with cols[1]:
-  if st.button('=', key="equals"):
-      calculate()
+if st.button('=', key="equals"):
+    calculate()
 
-
+# 지우기 버튼 (백스페이스)
+if st.button('←', key="backspace"):
+    delete_last()
 
 # 추가 기능 버튼
 with st.expander("Advanced Functions"):
