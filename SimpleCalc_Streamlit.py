@@ -100,13 +100,16 @@ with cols[3]:
     if st.button('+', key="plus"):
         operation_click('+')
 
-# 계산 버튼
-if st.button('=', key="equals"):
-    calculate()
-
 # 지우기 버튼 (백스페이스)
-if st.button('←', key="backspace"):
-    delete_last()
+with cols[0]:
+  if st.button('←', key="backspace"):
+      delete_last()
+# 계산 버튼
+with cols[1]:
+  if st.button('=', key="equals"):
+      calculate()
+
+
 
 # 추가 기능 버튼
 with st.expander("Advanced Functions"):
