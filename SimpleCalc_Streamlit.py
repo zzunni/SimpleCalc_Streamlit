@@ -39,7 +39,7 @@ with col1:
     st.button("4", on_click=update_expression, args=(4,))
     st.button("7", on_click=update_expression, args=(7,))
     st.button(".", on_click=update_expression, args=("."))  # Decimal point button
-    st.button("+", on_click=update_expression, args=("+",))
+    st.button("╇", on_click=update_expression, args=("+",))
     st.button("/", on_click=update_expression, args=("/"))
 
 with col2:
@@ -47,7 +47,7 @@ with col2:
     st.button("5", on_click=update_expression, args=(5,))
     st.button("8", on_click=update_expression, args=(8,))
     st.button("0", on_click=update_expression, args=(0,))
-    st.button("-", on_click=update_expression, args=("-",))
+    st.button("ㅡ", on_click=update_expression, args=("-",))
     st.button("C", on_click=clear_expression)
     
 
@@ -56,7 +56,7 @@ with col3:
     st.button("6", on_click=update_expression, args=(6,))
     st.button("9", on_click=update_expression, args=(9,))
     st.button("⌫", on_click=backspace_expression)  # Backspace button
-    st.button("*", on_click=update_expression, args=("*",))
+    st.button("x", on_click=update_expression, args=("*",))
     st.button("=", on_click=evaluate_expression)
 
 
