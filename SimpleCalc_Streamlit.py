@@ -6,20 +6,15 @@ st.title("Simple Calculator")
 
 # 결과 변수 초기화
 if 'result' not in st.session_state:
-    st.session_state.result = "0"
+    st.session_state.result = ""
 
-# 결과 출력
+# 결과창 만들기
 def display_result():
-    st.write("Result: ", st.session_state.result)
+    st.text_input("Expression", st.session_state.result, key='display', disabled=True)
 
-display_result()
-
-# 숫자 버튼 클릭 처리
+# 숫자 및 연산자 버튼 클릭 처리
 def num_click(num):
-    if st.session_state.result == "0":
-        st.session_state.result = str(num)
-    else:
-        st.session_state.result += str(num)
+    st.session_state.result += str(num)
     display_result()
 
 # 연산자 버튼 클릭 처리
@@ -39,10 +34,13 @@ def calculate():
 
 # 초기화
 def clear():
-    st.session_state.result = "0"
+    st.session_state.result = ""
     display_result()
 
-# 버튼 생성
+# 결과 화면 출력
+display_result()
+
+# 버튼 레이아웃
 cols = st.columns(4)
 with cols[0]:
     if st.button('7'):
@@ -88,15 +86,17 @@ with cols[0]:
         num_click(0)
 with cols[1]:
     if st.button('.'):
-        if '.' not in st.session_state.result:
-            st.session_state.result += '.'
-        display_result()
+        num_click('.')
 with cols[2]:
     if st.button('C'):
         clear()
 with cols[3]:
     if st.button('+'):
         operation_click('+')
+
+# 계산 버튼
+if st.button('='):
+    calculate()
 
 # 추가 기능 버튼
 with st.expander("Advanced Functions"):
@@ -114,22 +114,19 @@ with st.expander("Advanced Functions"):
             st.session_state.result += str(math.pi)
             display_result()
     with advanced_cols[3]:
-        if st.button('='):
-            calculate()
-            
-    with advanced_cols[0]:
         if st.button('sin'):
             st.session_state.result = f"sin({st.session_state.result})"
             display_result()
-    with advanced_cols[1]:
+            
+    with advanced_cols[0]:
         if st.button('cos'):
             st.session_state.result = f"cos({st.session_state.result})"
             display_result()
-    with advanced_cols[2]:
+    with advanced_cols[1]:
         if st.button('tan'):
             st.session_state.result = f"tan({st.session_state.result})"
             display_result()
-    with advanced_cols[3]:
+    with advanced_cols[2]:
         if st.button('ln'):
             st.session_state.result = f"log({st.session_state.result})"
             display_result()
