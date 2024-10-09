@@ -10,7 +10,7 @@ if 'result' not in st.session_state:
 
 # 결과창 만들기
 def display_result():
-    st.text_input("Expression", st.session_state.result, key='display', disabled=True)
+    st.text_input("Expression", st.session_state.result, key='display_result', disabled=True)
 
 # 숫자 및 연산자 버튼 클릭 처리
 def num_click(num):
@@ -49,94 +49,96 @@ display_result()
 cols = st.columns(4)
 
 with cols[0]:
-    if st.button('7'):
+    if st.button('7', key="7"):
         num_click(7)
 with cols[1]:
-    if st.button('8'):
+    if st.button('8', key="8"):
         num_click(8)
 with cols[2]:
-    if st.button('9'):
+    if st.button('9', key="9"):
         num_click(9)
 with cols[3]:
-    if st.button('/'):
+    if st.button('/', key="divide"):
         operation_click('/')
 
 with cols[0]:
-    if st.button('4'):
+    if st.button('4', key="4"):
         num_click(4)
 with cols[1]:
-    if st.button('5'):
+    if st.button('5', key="5"):
         num_click(5)
 with cols[2]:
-    if st.button('6'):
+    if st.button('6', key="6"):
         num_click(6)
 with cols[3]:
-    if st.button('*'):
+    if st.button('*', key="multiply"):
         operation_click('*')
 
 with cols[0]:
-    if st.button('1'):
+    if st.button('1', key="1"):
         num_click(1)
 with cols[1]:
-    if st.button('2'):
+    if st.button('2', key="2"):
         num_click(2)
 with cols[2]:
-    if st.button('3'):
+    if st.button('3', key="3"):
         num_click(3)
 with cols[3]:
-    if st.button('-'):
+    if st.button('-', key="minus"):
         operation_click('-')
 
 with cols[0]:
-    if st.button('0'):
+    if st.button('0', key="0"):
         num_click(0)
 with cols[1]:
-    if st.button('.'):
+    if st.button('.', key="dot"):
         num_click('.')
 with cols[2]:
-    if st.button('C'):
+    if st.button('C', key="clear"):
         clear()
 with cols[3]:
-    if st.button('+'):
+    if st.button('+', key="plus"):
         operation_click('+')
 
 # 계산 버튼
-if st.button('='):
-    calculate()
+with cols[0]:
+  if st.button('=', key="equals"):
+      calculate()
 
 # 지우기 버튼 (백스페이스)
-if st.button('←'):
-    delete_last()
+with cols[1]:
+  if st.button('←', key="backspace"):
+      delete_last()
 
 # 추가 기능 버튼
 with st.expander("Advanced Functions"):
     advanced_cols = st.columns(4)
     with advanced_cols[0]:
-        if st.button('^2'):
+        if st.button('^2', key="square"):
             st.session_state.result += '**2'
             display_result()
     with advanced_cols[1]:
-        if st.button('√'):
+        if st.button('√', key="sqrt"):
             st.session_state.result = f"sqrt({st.session_state.result})"
             display_result()
     with advanced_cols[2]:
-        if st.button('π'):
+        if st.button('π', key="pi"):
             st.session_state.result += str(math.pi)
             display_result()
     with advanced_cols[3]:
-        if st.button('sin'):
+        if st.button('sin', key="sin"):
             st.session_state.result = f"sin({st.session_state.result})"
             display_result()
-            
+
     with advanced_cols[0]:
-        if st.button('cos'):
+        if st.button('cos', key="cos"):
             st.session_state.result = f"cos({st.session_state.result})"
             display_result()
     with advanced_cols[1]:
-        if st.button('tan'):
+        if st.button('tan', key="tan"):
             st.session_state.result = f"tan({st.session_state.result})"
             display_result()
     with advanced_cols[2]:
-        if st.button('ln'):
+        if st.button('ln', key="ln"):
             st.session_state.result = f"log({st.session_state.result})"
             display_result()
