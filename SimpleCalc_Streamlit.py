@@ -14,7 +14,38 @@ def display_result():
 
 # 숫자 및 연산자 버튼 클릭 처리
 def num_click(num):
-@@ -49,94 +49,96 @@
+    st.session_state.result += str(num)
+    display_result()
+
+# 연산자 버튼 클릭 처리
+def operation_click(op):
+    st.session_state.result += op
+    display_result()
+
+# 계산 실행
+def calculate():
+    try:
+        expression = st.session_state.result.replace("^", "**")  # ^를 **로 변환
+        result = eval(expression)
+        st.session_state.result = str(result)
+    except Exception as e:
+        st.session_state.result = "Error"
+    display_result()
+
+# 마지막 입력값 삭제 (백스페이스)
+def delete_last():
+    st.session_state.result = st.session_state.result[:-1]
+    display_result()
+
+# 전체 초기화
+def clear():
+    st.session_state.result = ""
+    display_result()
+
+# 결과 화면 출력
+display_result()
+
+# 버튼 레이아웃
 cols = st.columns(4)
 
 with cols[0]:
@@ -70,14 +101,12 @@ with cols[3]:
         operation_click('+')
 
 # 계산 버튼
-with cols[0]:
-  if st.button('=', key="equals"):
-      calculate()
+if st.button('=', key="equals"):
+    calculate()
 
 # 지우기 버튼 (백스페이스)
-with cols[1]:
-  if st.button('←', key="backspace"):
-      delete_last()
+if st.button('←', key="backspace"):
+    delete_last()
 
 # 추가 기능 버튼
 with st.expander("Advanced Functions"):
@@ -98,6 +127,7 @@ with st.expander("Advanced Functions"):
         if st.button('sin', key="sin"):
             st.session_state.result = f"sin({st.session_state.result})"
             display_result()
+
     with advanced_cols[0]:
         if st.button('cos', key="cos"):
             st.session_state.result = f"cos({st.session_state.result})"
@@ -110,7 +140,3 @@ with st.expander("Advanced Functions"):
         if st.button('ln', key="ln"):
             st.session_state.result = f"log({st.session_state.result})"
             display_result()
-0 commit comments
-Comments
-0
- (0)
