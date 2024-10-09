@@ -17,6 +17,10 @@ def evaluate_expression():
     except Exception as e:
         st.session_state.expression = "Error"
 
+# Backspace function
+def backspace_expression():
+    st.session_state.expression = st.session_state.expression[:-1]
+    
 # Clear the expression
 def clear_expression():
     st.session_state.expression = ""
@@ -34,24 +38,27 @@ with col1:
     st.button("1", on_click=update_expression, args=(1,))
     st.button("4", on_click=update_expression, args=(4,))
     st.button("7", on_click=update_expression, args=(7,))
+    st.button(".", on_click=update_expression, args=("."))  # Decimal point button
     st.button("+", on_click=update_expression, args=("+",))
-    st.button("C", on_click=clear_expression)
+    st.button("/", on_click=update_expression, args=("/"))
 
 with col2:
     st.button("2", on_click=update_expression, args=(2,))
     st.button("5", on_click=update_expression, args=(5,))
     st.button("8", on_click=update_expression, args=(8,))
-    st.button("-", on_click=update_expression, args=("-",))
     st.button("0", on_click=update_expression, args=(0,))
+    st.button("-", on_click=update_expression, args=("-",))
+    st.button("C", on_click=clear_expression)
+    
 
 with col3:
     st.button("3", on_click=update_expression, args=(3,))
     st.button("6", on_click=update_expression, args=(6,))
     st.button("9", on_click=update_expression, args=(9,))
+    st.button("⌫", on_click=backspace_expression)  # Backspace button
     st.button("*", on_click=update_expression, args=("*",))
-    st.button("/", on_click=update_expression, args=("/"))
+    st.button("=", on_click=evaluate_expression)
 
-st.button("=", on_click=evaluate_expression)
 
 # Engineering functions
 st.subheader("Engineering Functions")
@@ -68,7 +75,7 @@ with col5:
     st.button("sqrt", on_click=update_expression, args=("math.sqrt(",))
 
 with col6:
-    st.button("pi", on_click=update_expression, args=(math.pi,))
+    st.button("pi", on_click=update_expression, args=(math.pi,)) 
     st.button("(", on_click=update_expression, args=("(",))
     st.button(")", on_click=update_expression, args=(")",))
 
