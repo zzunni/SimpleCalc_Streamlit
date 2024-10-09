@@ -56,7 +56,7 @@ with col3:
     st.button("6", on_click=update_expression, args=(6,))
     st.button("9", on_click=update_expression, args=(9,))
     st.button("⌫", on_click=backspace_expression)  # Backspace button
-    st.button("x", on_click=update_expression, args=("*",))
+    st.button("X", on_click=update_expression, args=("*",))
     st.button("=", on_click=evaluate_expression)
 
 
