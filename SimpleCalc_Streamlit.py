@@ -8,8 +8,9 @@ st.title("Simple Calculator")
 if 'result' not in st.session_state:
     st.session_state.result = ""
 
-# 결과창 만들기 (key 값에 고유한 값 부여)
+# 결과창 만들기
 def display_result():
+    # 고유한 key를 사용하여 중복 방지
     st.text_input("Expression", st.session_state.result, key='display_result', disabled=True)
 
 # 숫자 및 연산자 버튼 클릭 처리
